@@ -1,5 +1,9 @@
 package ast;
 
+/**
+ * @author GAO RISHENG A0101891L
+ * this class is mainly in charge of AST node construction of import statement in C/Java/Python Programs
+ */
 public class ASTImportStatement extends ASTSimpleStatement{
 	private static final String NODE_TYPE = "Simple Statement";
 	protected ASTExpression packageName;

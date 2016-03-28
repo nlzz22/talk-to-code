@@ -1,7 +1,12 @@
 package ast;
 
 import java.util.ArrayList;
-
+/**
+ * @author GAO RISHENG A0101891L
+ * this class is mainly in charge of generation of syntax that represents a for loop in 
+ * Java programs
+ *
+ */
 public class ASTForStatementJ extends ASTForStatement {
 	private ASTExpression initialCondition;
 	private ASTExpression finalCondition;
@@ -29,6 +34,7 @@ public class ASTForStatementJ extends ASTForStatement {
 		this.statements.add(s);
 		s.addParent(this);
 	}
+	//actual code generation
 	public String toSyntax(){
 		this.result = "for (";
 		if(this.initialCondition!=null){

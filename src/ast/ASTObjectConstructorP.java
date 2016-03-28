@@ -1,10 +1,16 @@
 package ast;
-
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is mainly in charge of syntax generation of object constructor declaration
+ * in Python programs
+ *
+ */
 public class ASTObjectConstructorP extends ASTObjectConstructor {
 
 	public ASTObjectConstructorP() {
 		super();
 	}
+	//syntax generation
 	public String toSyntax(){
 		this.result = "def __init__(self, ";
 

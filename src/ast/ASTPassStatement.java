@@ -1,5 +1,12 @@
 package ast;
 import java.util.*;
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is mainly in charge of AST node construction and syntax generation of
+ * Pass statement in Python programs
+ * (C and Java do not support pass statement)
+ *
+ */
 public final class ASTPassStatement extends ASTBlockStatement {
 	private ArrayList<ASTStatement> statements;
 	public ASTPassStatement() {

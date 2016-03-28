@@ -1,10 +1,18 @@
 package ast;
 import java.util.ArrayList;
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is mainly in charge of construction of ASTnode that represents
+ * variable declaration statement in C program.
+ */
 public final class ASTDeclarationStatementC extends ASTDeclarationStatement {
-	
+	//1 variable declaration can have multiply variable declared in the same type
 	private ArrayList<ASTExpressionUnit> variables;
+	//They can be either initialized or uninitialized
 	private ArrayList<ASTExpression> exps;
+	//Variable type is necessary in variable declaration
 	private ASTExpressionUnitTypes type;
+	//modifiers like "const" might be used to define variables
 	private ArrayList<String> modifiers;
 	public ASTDeclarationStatementC() {
 	}
@@ -32,6 +40,7 @@ public final class ASTDeclarationStatementC extends ASTDeclarationStatement {
 		variable.addParent(this);
 		exp.addParent(this);
 	}
+	//syntax construction
 	public String toSyntax(){
 		this.result = "";
 		for(int i = 0;i<this.modifiers.size();i++){

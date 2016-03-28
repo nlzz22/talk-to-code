@@ -1,7 +1,12 @@
 package ast;
 
 import java.util.ArrayList;
-
+/**
+ * @author GAO RISHENG A0101891L
+ * this class is main in charge of construction of AST node that represents a function declaration
+ * (including signature and body) of PYTHON programs
+ *
+ */
 public class ASTFunctionP extends ASTFunction {
 	private ArrayList<ASTExpression> parameters;
 	public ASTFunctionP(String name) {
@@ -12,6 +17,7 @@ public class ASTFunctionP extends ASTFunction {
 		p.addParent(this);
 
 	}
+	//syntax generation
 	public String toSyntax(){
 		this.result = "def ";
 		this.result += this.name.toSyntax();

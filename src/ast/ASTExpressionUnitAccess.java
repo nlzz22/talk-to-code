@@ -2,6 +2,13 @@ package ast;
 
 import java.util.ArrayList;
 
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is mainly in charge of construction of AST nodes that represents
+ * a term that an object/struct with direct access to its attributes (like object.attribute) 
+ * and syntax generation of the respective term.
+ * This access can be nested (e.g a.b.c etc)
+ */
 public class ASTExpressionUnitAccess extends ASTExpressionUnit {
 	private static final String NODE_TYPE = "Expression Access";
 	private ASTExpressionUnit parent;
@@ -27,6 +34,7 @@ public class ASTExpressionUnitAccess extends ASTExpressionUnit {
 		this.child = child;
 		child.addParent(this);
 	}
+	
 	public static ASTExpressionUnitAccess generateNestedAccess(ArrayList<String> ids){
 		ASTExpressionUnitIdentifier parent = new ASTExpressionUnitIdentifier(ids.get(0));
 		ASTExpressionUnitAccess output = new ASTExpressionUnitAccess(parent);
@@ -44,6 +52,7 @@ public class ASTExpressionUnitAccess extends ASTExpressionUnit {
 		}
 		return current;
 	}
+	//syntax construction
 	public String toSyntax(){
 		this.result = this.parent.toSyntax()+"."+this.child.toSyntax();
 		return super.toSyntax();

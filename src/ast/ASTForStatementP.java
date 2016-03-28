@@ -1,7 +1,12 @@
 package ast;
 
 import java.util.ArrayList;
-
+/**
+ * @author GAO RISHENG A0101891L
+ * this class is mainly in charge of generation of syntax that represents a for loop in 
+ * python programs
+ *
+ */
 public class ASTForStatementP extends ASTForStatement {
 	
 	private ArrayList<ASTStatement> statements;
@@ -28,6 +33,7 @@ public class ASTForStatementP extends ASTForStatement {
 		this.elseBranch.add(s);
 		s.addParent(this);
 	}
+	//actual code generation
 	public String toSyntax(){
 		this.result = "for ";
 		this.result+=this.variable.toSyntax();

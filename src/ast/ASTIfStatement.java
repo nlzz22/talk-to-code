@@ -1,5 +1,9 @@
 package ast;
 import java.util.*;
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is mainly in charge of AST Node generation of if statement in C/JAVA/Python Programs
+ */
 public class ASTIfStatement extends ASTBlockStatement {
 	private static final String NODE_TYPE = "If Statement";
 	protected ASTExpression condition;

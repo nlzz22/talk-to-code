@@ -1,9 +1,14 @@
 package ast;
 
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is main for construction of AST node representing a continue statement
+ */
 public class ASTContinueStatement extends ASTSimpleStatement {
 	private static final String NODE_TYPE = "Break Statement";
 	public ASTContinueStatement() {	
 	}
+	//virtual method
 	public String toSyntax(){
 		this.result = "continue";
 		return this.result;

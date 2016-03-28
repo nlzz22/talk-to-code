@@ -1,5 +1,9 @@
 package ast;
 
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is mainly in charge of syntax generation of if statement in C Programs
+ */
 public final class ASTIfStatementC extends ASTIfStatement {
 
 	public ASTIfStatementC() {

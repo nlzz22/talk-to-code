@@ -1,5 +1,14 @@
 package ast;
 import java.util.*;
+
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is in charge of AST node construction and syntax generation
+ * of Struct Declaration statement in C programs
+ * (Java and Python do not support struct)
+ * (difference between a struct and an object is structs can only have attributes
+ * and structs cannot contains function/methods as their members) 
+ */
 public class ASTStructDeclaration extends ASTBlockStatement {
 	private static final String NODE_TYPE = "Struct define Statement";
 	private ASTExpressionUnitIdentifier name;

@@ -1,5 +1,11 @@
 package ast;
 import java.util.*;
+/**
+ * @author GAO RISHENG
+ * This class is in charge of AST node construction and syntax generation
+ * of Switch statements in C/Java programs(The syntax in C and in Java are exactly the same)
+ * (Python does not support swtich statement)
+ */
 public class ASTSwitchStatement extends ASTBlockStatement {
 	ASTExpression exp;
 	ArrayList<ASTExpression> cases;

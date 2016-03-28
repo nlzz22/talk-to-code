@@ -1,5 +1,12 @@
 package ast;
 import java.util.*;
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is mainly in charge of AST node construction of object constructor declaration
+ * in Java and Python programs
+ * (C does not support objects)
+ *
+ */
 public class ASTObjectConstructor extends ASTBlockStatement {
 	private static final String NODE_TYPE = "Object Statement";
 	
@@ -20,6 +27,7 @@ public class ASTObjectConstructor extends ASTBlockStatement {
 	public String typeof(){
 		return super.typeof()+NODE_TYPE;
 	}
+	//virtual methods
 	public String toSyntax(){
 		return this.result;
 	}

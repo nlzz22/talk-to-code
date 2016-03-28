@@ -2,6 +2,10 @@ package ast;
 
 import java.util.ArrayList;
 
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is the super class of all kinds of AST nodes
+ */
 public class ASTNode{
 	private static final String type = "ASTNode";
 	protected int usability;
@@ -25,12 +29,16 @@ public class ASTNode{
 		this.parent = p;
 	}
 	
+	/**
+	 * @deprecated methods to check whether a node is supported in specific programming language
+	 * This is handled in parser level.
+	 */
 	protected boolean isApplicable(int programmingLanguageIndex){
 		return (this.usability&(1<<programmingLanguageIndex))==0;
 	}
 	
 	
-	//need to change
+	//virtual methods
 	public String toSyntax()
 	{
 		return this.result;

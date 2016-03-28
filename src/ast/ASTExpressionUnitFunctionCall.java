@@ -1,5 +1,12 @@
 package ast;
 import java.util.ArrayList;
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is mainly in charge of construction of AST nodes that represents
+ * a term of function call (like foo()) 
+ * and syntax generation of the respective term.
+ * This is available in all C/JAVA/PYTHON.
+ */
 public class ASTExpressionUnitFunctionCall extends ASTExpressionUnit{
 	private static final String NODE_TYPE = "Function Call";
 	private String functionName;
@@ -13,8 +20,9 @@ public class ASTExpressionUnitFunctionCall extends ASTExpressionUnit{
 		exp.parent = this;
 	}
 	public String typeof(){
-		return super.typeof()+NODE_TYPE;
+		return super.typeof()+"->"+NODE_TYPE;
 	}
+	//syntax construction
 	public String toSyntax(){
 		this.result = this.functionName;
 		this.result += "(";

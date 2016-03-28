@@ -1,5 +1,9 @@
 package ast;
-
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is in charge of syntax generation of while statement in C programs
+ * 
+ */
 public class ASTWhileStatementC extends ASTWhileStatement {
 	public ASTWhileStatementC(){
 		this.condition = new ASTExpressionUnitLiteral("1");
@@ -11,6 +15,8 @@ public class ASTWhileStatementC extends ASTWhileStatement {
 		this.statements.add(s);
 		s.addParent(this);
 	}
+	//code generation
+	//while(condition){statements}
 	public String toSyntax(){
 		this.result = "while (";
 		this.result +=this.condition.toSyntax();

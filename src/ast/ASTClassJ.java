@@ -1,9 +1,15 @@
 package ast;
 import java.util.ArrayList;
+/**
+ * @author GAO RISHENG
+ * This class is to generate Class Declaration AST Nodes into Java Syntax
+ *
+ */
 public class ASTClassJ extends ASTClass {
 	private static final String DEFAULT_MODIFIER = "";
+	//modifiers include : public/protected/private/final
 	private ArrayList<String> modifiers;
-
+	//modifiers include : implement/extends
 	private String inheritModifier = DEFAULT_MODIFIER;
 	private ASTExpressionUnitIdentifier inheritClass;
 	public ASTClassJ(String name) {
@@ -19,7 +25,11 @@ public class ASTClassJ extends ASTClass {
 		this.inheritClass = inheritClass;
 		inheritClass.addParent(this);
 	}
-	
+	//Code Syntax construction
+	//Output format will be
+	//modifier class Name modifier Name {
+	// statements
+	//}
 	public String toSyntax(){
 		this.result = "";
 		for(String s:this.modifiers){
@@ -28,7 +38,7 @@ public class ASTClassJ extends ASTClass {
 		}
 		this.result += "class ";
 		this.result += this.name;
-		if(!this.inheritModifier.equals("")){
+		if(!this.inheritModifier.equals(DEFAULT_MODIFIER)){
 			this.result += " ";
 			this.result += this.inheritModifier;
 			this.result += " ";

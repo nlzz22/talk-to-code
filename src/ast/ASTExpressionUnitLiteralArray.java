@@ -1,9 +1,14 @@
 package ast;
 import java.util.*;
 
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is mainly for construction of AST nodes representing a constant array in C/Java/Python
+ * Program and its respective syntax generation
+ *
+ */
 public class ASTExpressionUnitLiteralArray extends ASTExpressionUnitLiteral{
 	private static final String NODE_TYPE = "Array";
-	private static final int USABILITY = 7; //111
 	private ArrayList<ASTExpression> entries;
 	private int size;
 	
@@ -25,7 +30,6 @@ public class ASTExpressionUnitLiteralArray extends ASTExpressionUnitLiteral{
 	private void initialize() {
 		this.entries = new ArrayList<ASTExpression>();
 		this.size = entries.size();
-		this.usability = USABILITY;
 	}
 	public String typeof(){
 		return super.typeof()+"->"+NODE_TYPE;

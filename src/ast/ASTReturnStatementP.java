@@ -1,5 +1,11 @@
 package ast;
 import java.util.*;
+/**
+ * @author GAO RISHENG
+ * this class is in charge of syntax generation of return statement 
+ * in Python programs
+ *
+ */
 public class ASTReturnStatementP extends ASTReturnStatement {
 	ArrayList<ASTExpression> exps;
 	public ASTReturnStatementP() {

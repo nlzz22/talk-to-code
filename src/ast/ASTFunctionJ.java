@@ -1,7 +1,12 @@
 package ast;
 
 import java.util.ArrayList;
-
+/**
+ * @author GAO RISHENG A0101891L
+ * this class is main in charge of construction of AST node that represents a function declaration
+ * (including signature and body) of JAVA programs
+ *
+ */
 public final class ASTFunctionJ extends ASTFunction {
 	private ArrayList<String> modifiers;
 	private ASTExpressionUnitTypes returnType;
@@ -31,13 +36,17 @@ public final class ASTFunctionJ extends ASTFunction {
 	}
 	public String toSyntax(){
 		this.result = "";
+		//adding modifiers
 		for(String mod : this.modifiers){
 			this.result += mod;
 			this.result += " ";
 		}
+		//adding return type
 		this.result+=this.returnType.toSyntax();
 		this.result+=" ";
+		//adding method name
 		this.result+=this.name.toSyntax();
+		//adding parameters
 		this.result+="(";
 		for(int j =0;j<this.types.size();j++){
 			this.result+=this.types.get(j).toSyntax();
@@ -48,6 +57,7 @@ public final class ASTFunctionJ extends ASTFunction {
 			}
 		}
 		this.result+="){\n";
+		//adding statements
 		for(ASTStatement s:this.statements){
 			this.result+="\t";
 			this.result+=s.toSyntax();

@@ -1,5 +1,12 @@
 package ast;
 
+/**
+ * @author GAO RISHENG
+ * This class is the mainly in charge of construction of AST nodes that representing
+ * a 'term' (it can be a value, an identifier, an array, a function call, etc)
+ * in C/Java/Python Programs 
+ *
+ */
 public class ASTExpressionUnit extends ASTExpression {
 	private static final String NODE_TYPE = "Unit";
 	
@@ -25,8 +32,12 @@ public class ASTExpressionUnit extends ASTExpression {
 	}
 
 
+	/**
+	 * @deprecated
+	 * virtual methods that implemented previously
+	 */
 	public ASTExpressionUnit(ASTExpressionUnit a){
-		super(a.result,a.isEnd,a.isQuoted);
+		super(a.result,a.isQuoted);
 		this.name = a.name;
 		this.type = a.type;
 		this.value = a.value;
@@ -35,6 +46,9 @@ public class ASTExpressionUnit extends ASTExpression {
 	}
 
 
+	/**
+	 * @deprecated
+	 */
 	public String checkClass(String type) {
 		//Check whether the unit type belongs to the primitive type
 		//if yes then need to do auto-boxing
@@ -50,6 +64,7 @@ public class ASTExpressionUnit extends ASTExpression {
 	public String getValue() {
 		return this.value;
 	}
+	//virtual methods
 	public String toSyntax() {
 		return super.toSyntax();
 	}

@@ -1,18 +1,27 @@
 package ast;
 import java.util.ArrayList;
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is mainly constructing AST nodes for Class declaration in the program.
+ * Since C does not support class, only Java and Python will have subclasses under this class
+ *
+ */
 public class ASTClass extends ASTBlockStatement {
-	
+	//the class name
 	protected ASTExpressionUnitIdentifier name;
+	//A class can have multiple statements like functions and attributes 
 	protected ArrayList<ASTStatement> statements;
 	public ASTClass(String name) {
 		ASTExpressionUnitIdentifier className = new ASTExpressionUnitIdentifier(name);
 		this.name = className;
 		className.addParent(this);
 	}
+	//adding a statement to this class
 	public void addStatement(ASTStatement s){
 		this.statements.add(s);
 		s.addParent(this);
 	}
+	//virtual method
 	public String toSyntax(){
 		return this.result;
 	}

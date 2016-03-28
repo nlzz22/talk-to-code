@@ -3,12 +3,16 @@ package ast;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is mainly for creating the AST node for Python programs
+ */
 public class ASTCompilationUnitP extends ASTCompilationUnit {
 
 	public ASTCompilationUnitP(String name) {
 		super(name);
 	}
+	//This method outputs a Python program with respective program name
 	public void toFile(){
 		this.toSyntax();
 		String filename = this.name + ".py";

@@ -1,8 +1,14 @@
 package ast;
 import java.util.*;
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is mainly in charge of construction of AST nodes that represents
+ * a term of an index of an array (like x[a],arr[1][2] etc) 
+ * and syntax generation of the respective term.
+ * This is available in all C/JAVA/PYTHON.
+ */
 public class ASTExpressionUnitIdentifierArrayObject extends ASTExpressionUnitIdentifier{
 	private static final String NODE_TYPE = "Array Object";
-	private static final int USABILITY = 7;//111
 	private ArrayList<ASTExpression> indexes;
 	private String name;
 	private int dimension;
@@ -10,7 +16,6 @@ public class ASTExpressionUnitIdentifierArrayObject extends ASTExpressionUnitIde
 	private void initialize() {
 		this.indexes  = new ArrayList<ASTExpression>();
 		this.dimension = 0;
-		this.usability = USABILITY;
 	}
 	
 	public ASTExpressionUnitIdentifierArrayObject(){
@@ -27,6 +32,7 @@ public class ASTExpressionUnitIdentifierArrayObject extends ASTExpressionUnitIde
 		this.dimension++;
 		index.parent = this;
 	}
+	//syntax construction
 	public String toSyntax(){
 			this.result = "";
 			this.result+=this.name;

@@ -1,5 +1,11 @@
 package ast;
 
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is mainly in charge of generation of AST Node and code syntax for infix expression
+ * for C/Java/Python programs. For infix expression, syntax for all these 3 programming languages
+ * will be exactly the same except for the scope of operators.
+ */
 public class ASTExpressionInfixOperation extends ASTExpression{
 	private static final String NODE_TYPE = "Infix Operation";
 	private ASTExpressionUnitOperator op;
@@ -20,9 +26,6 @@ public class ASTExpressionInfixOperation extends ASTExpression{
 	}
 	public boolean isValid(int currentProgrammingLanguage){
 		return (this.usability&(1<<currentProgrammingLanguage))!=0;
-	}
-	public void end() {
-		this.isEnd = true;
 	}
 	public String toSyntax() {
 		this.result = identifier1.toSyntax() + " "+this.op.toSyntax() +" "+ identifier2.toSyntax();

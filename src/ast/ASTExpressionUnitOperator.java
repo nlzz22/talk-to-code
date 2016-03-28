@@ -1,5 +1,12 @@
 package ast;
 
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is mainly in charge of AST node generation of operators in C/Java/Python programs
+ * It is also in charge of operator classification and grouping which can indicate
+ * whether an operator is supported by a programming language
+ *
+ */
 public class ASTExpressionUnitOperator extends ASTExpressionUnit{
 	private static final String NODE_TYPE = "Types";
 	private static final String[][] ALL_OPERATORS = {

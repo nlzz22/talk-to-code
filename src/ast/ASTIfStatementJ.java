@@ -1,5 +1,8 @@
 package ast;
-
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is mainly in charge of syntax generation of if statement in Java Programs
+ */
 public class ASTIfStatementJ extends ASTIfStatement {
 
 	public ASTIfStatementJ() {

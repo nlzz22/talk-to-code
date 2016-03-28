@@ -1,5 +1,11 @@
 package ast;
 import java.util.*;
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is mainly in charge of syntax generation of object constructor declaration
+ * in Java programs
+ *
+ */
 public final class ASTObjectConstructorJ extends ASTObjectConstructor {
 	private ArrayList<ASTExpressionUnitTypes> types;
 	private ASTExpressionUnitIdentifier name;
@@ -19,14 +25,18 @@ public final class ASTObjectConstructorJ extends ASTObjectConstructor {
 		this.types.add(t);
 		t.addParent(this);
 	}
+	//syntax generation
 	public String toSyntax(){
 		this.result = "";
+		//add modifier to constructor
 		for(String s:this.modifiers){
 			this.result+=s;
 			this.result+=" ";
 		}
+		//object name
 		this.result+= this.name.toSyntax();
 		this.result+="(";
+		//add parameters to constructor
 		for(int i = 0;i<this.types.size();i++){
 			this.result+=this.types.get(i).toSyntax();
 			this.result+=" ";

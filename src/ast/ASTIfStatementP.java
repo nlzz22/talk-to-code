@@ -1,5 +1,8 @@
 package ast;
-
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is mainly in charge of syntax generation of if statement in Python Programs
+ */
 public class ASTIfStatementP extends ASTIfStatement {
 
 	public ASTIfStatementP() {

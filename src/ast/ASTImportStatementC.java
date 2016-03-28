@@ -1,5 +1,8 @@
 package ast;
-
+/**
+ * @author GAO RISHENG A0101891L
+ * this class is mainly in charge of syntax generation of import statement in C Programs
+ */
 public final class ASTImportStatementC extends ASTImportStatement{
 
 	public ASTImportStatementC(ASTExpression p) {

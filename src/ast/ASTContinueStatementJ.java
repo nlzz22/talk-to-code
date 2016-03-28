@@ -1,6 +1,10 @@
 package ast;
-
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is main for construction of AST node representing a continue statement in Java
+ */
 public class ASTContinueStatementJ extends ASTContinueStatement {
+	//Java supports continue (label)
 	ASTExpressionUnitIdentifier label;
 	public ASTContinueStatementJ() {
 		this.label = null;
@@ -9,6 +13,7 @@ public class ASTContinueStatementJ extends ASTContinueStatement {
 		this.label = label;
 		label.addParent(this);
 	}
+	//syntax construction
 	public String toSyntax(){
 		if(this.label == null)
 			this.result = super.toSyntax()+";\n";

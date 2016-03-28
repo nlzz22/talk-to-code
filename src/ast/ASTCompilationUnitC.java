@@ -4,11 +4,16 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is mainly for creating the AST node for C programs
+ */
 public final class ASTCompilationUnitC extends ASTCompilationUnit {
 
 	public ASTCompilationUnitC(String name) {
 		super(name);
 	}
+	//This method outputs a C program with respective program name
 	public void toFile(){
 		this.toSyntax();
 		String filename = this.name + ".c";

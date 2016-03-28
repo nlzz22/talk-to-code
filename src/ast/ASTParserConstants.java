@@ -291,49 +291,57 @@ public interface ASTParserConstants {
   /** RegularExpression Id. */
   int INDEX = 147;
   /** RegularExpression Id. */
-  int INCLUDE = 148;
+  int INDEX_END = 148;
   /** RegularExpression Id. */
-  int FOR_START = 149;
+  int INCLUDE = 149;
   /** RegularExpression Id. */
-  int FOR_END = 150;
+  int FOR_START = 150;
   /** RegularExpression Id. */
-  int WHILE_START = 151;
+  int FOR_END = 151;
   /** RegularExpression Id. */
-  int WHILE_END = 152;
+  int WHILE_START = 152;
   /** RegularExpression Id. */
-  int SWITCH_START = 153;
+  int WHILE_END = 153;
   /** RegularExpression Id. */
-  int SWITCH_END = 154;
+  int SWITCH_START = 154;
   /** RegularExpression Id. */
-  int CASE_START = 155;
+  int SWITCH_END = 155;
   /** RegularExpression Id. */
-  int CASE_END = 156;
+  int CASE_START = 156;
   /** RegularExpression Id. */
-  int FUNCTION_DEC = 157;
+  int CASE_END = 157;
   /** RegularExpression Id. */
-  int FUNCTION_START = 158;
+  int FUNCTION_DEC = 158;
   /** RegularExpression Id. */
-  int FUNCTION_END = 159;
+  int FUNCTION_START = 159;
   /** RegularExpression Id. */
-  int STRUCT_DEC = 160;
+  int FUNCTION_END = 160;
   /** RegularExpression Id. */
-  int STRUCT_START = 161;
+  int STRUCT_DEC = 161;
   /** RegularExpression Id. */
-  int STRUCT_END = 162;
+  int STRUCT_START = 162;
   /** RegularExpression Id. */
-  int PROGRAM_END = 163;
+  int STRUCT_END = 163;
   /** RegularExpression Id. */
-  int PROGRAM_C = 164;
+  int PROGRAM_END = 164;
   /** RegularExpression Id. */
-  int C_TYPES_MODIFIERS_SIGNED = 165;
+  int PROGRAM_C = 165;
   /** RegularExpression Id. */
-  int C_TYPES_MODIFIERS_UNSIGNED = 166;
+  int DECLARE_END = 166;
   /** RegularExpression Id. */
-  int IDENTIFIER = 167;
+  int DIMENSION = 167;
   /** RegularExpression Id. */
-  int LETTER = 168;
+  int PARAMETER_A = 168;
   /** RegularExpression Id. */
-  int PART_LETTER = 169;
+  int C_TYPES_MODIFIERS_SIGNED = 169;
+  /** RegularExpression Id. */
+  int C_TYPES_MODIFIERS_UNSIGNED = 170;
+  /** RegularExpression Id. */
+  int IDENTIFIER = 171;
+  /** RegularExpression Id. */
+  int LETTER = 172;
+  /** RegularExpression Id. */
+  int PART_LETTER = 173;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -490,6 +498,7 @@ public interface ASTParserConstants {
     "\"#access_end\"",
     "\"#label\"",
     "\"#indexes\"",
+    "\"#index_end\"",
     "\"#include\"",
     "\"#for_start\"",
     "\"#for_end\"",
@@ -507,6 +516,9 @@ public interface ASTParserConstants {
     "\"#struct_end\"",
     "\"#program_end\"",
     "\"#c_program\"",
+    "\"#dec_end\"",
+    "\"#dimension\"",
+    "\"#parameter_a\"",
     "\"signed\"",
     "\"unsigned\"",
     "<IDENTIFIER>",

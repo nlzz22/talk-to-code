@@ -1,20 +1,15 @@
 package ast;
-
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is main for construction of AST node representing a continue statement in C program
+ */
 public class ASTContinueStatementC extends ASTContinueStatement {
-	ASTExpressionUnitIdentifier label;
 	public ASTContinueStatementC() {
-		this.label = null;
 	}
-	public ASTContinueStatementC(ASTExpressionUnitIdentifier label) {
-		this.label = label;
-		label.addParent(this);
-	}
+
+	//continue statement syntax generation
 	public String toSyntax(){
-		if(this.label == null)
-			this.result = super.toSyntax()+";\n";
-		else{
-			this.result = super.toSyntax()+" "+this.label.toSyntax()+";\n";
-		}
+		this.result = super.toSyntax()+";\n";
 		return this.result;
 	}
 }

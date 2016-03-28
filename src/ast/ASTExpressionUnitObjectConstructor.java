@@ -1,5 +1,11 @@
 package ast;
 import java.util.*;
+/**
+ * @author GAO RISHENG A0101891L
+ * This class is mainly in charge of construction of AST nodes that representing a new Object
+ * constructor in Java and Python program
+ *
+ */
 public class ASTExpressionUnitObjectConstructor extends ASTExpressionUnit {
 	private static final String NODE_TYPE = "Object Constructor";
 	protected ASTExpressionUnitTypes type;
@@ -13,6 +19,7 @@ public class ASTExpressionUnitObjectConstructor extends ASTExpressionUnit {
 		this.parameters.add(exp);
 		exp.addParent(this);
 	}
+	//virtual method
 	public String toSyntax(){
 		return this.result;
 	}
