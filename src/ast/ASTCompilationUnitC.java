@@ -14,9 +14,9 @@ public final class ASTCompilationUnitC extends ASTCompilationUnit {
 		super(name);
 	}
 	//This method outputs a C program with respective program name
-	public void toFile(){
+	public void toFile(String path){
 		this.toSyntax();
-		String filename = this.name + ".c";
+		String filename = path + this.name + ".c";
 		File textOutput = new File(filename);
 		try {
             textOutput.createNewFile();

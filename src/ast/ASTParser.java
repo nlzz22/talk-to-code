@@ -1840,9 +1840,10 @@ public class ASTParser implements ASTParserConstants {
   }
 
   static final public ASTCompilationUnit program() throws ParseException {
-  ASTCompilationUnit result;
+  ASTCompilationUnitC result;
     result = programC();
-    System.out.println(result.toSyntax());
+    //System.out.println(result.toSyntax());
+    //result.toFile();
     {if (true) return result;}
     throw new Error("Missing return statement in function");
   }
