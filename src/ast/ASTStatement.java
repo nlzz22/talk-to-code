@@ -17,6 +17,6 @@ public class ASTStatement extends ASTNode {
 		return this.result;
 	}
 	public String typeof(){
-		return super.typeof()+NODE_TYPE;
+		return super.typeof()+"->"+NODE_TYPE;
 	}
 }

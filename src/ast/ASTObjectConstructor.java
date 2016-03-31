@@ -13,6 +13,7 @@ public class ASTObjectConstructor extends ASTBlockStatement {
 	protected ArrayList<ASTExpressionUnitIdentifier> parameters;
 	protected ArrayList<ASTStatement> statements;
 	public ASTObjectConstructor() {
+		super();
 		this.parameters = new ArrayList<ASTExpressionUnitIdentifier>();
 		this.statements = new ArrayList<ASTStatement>();
 	}
@@ -25,7 +26,7 @@ public class ASTObjectConstructor extends ASTBlockStatement {
 		s.addParent(this);
 	}
 	public String typeof(){
-		return super.typeof()+NODE_TYPE;
+		return super.typeof()+"->"+NODE_TYPE;
 	}
 	//virtual methods
 	public String toSyntax(){

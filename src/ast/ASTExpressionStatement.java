@@ -10,6 +10,7 @@ public class ASTExpressionStatement extends ASTSimpleStatement {
 	private static final String NODE_TYPE = "Expression Statement";
 	protected ASTExpression exp;
 	public ASTExpressionStatement(ASTExpression exp){
+		super();
 		this.exp = exp;
 		exp.addParent(this);
 	}
@@ -19,6 +20,6 @@ public class ASTExpressionStatement extends ASTSimpleStatement {
 		return this.result;
 	}
 	public String typeof(){
-		return super.typeof()+NODE_TYPE;
+		return super.typeof()+"->"+NODE_TYPE;
 	}
 }

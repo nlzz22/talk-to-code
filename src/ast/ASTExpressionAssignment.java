@@ -18,6 +18,7 @@ public class ASTExpressionAssignment extends ASTExpression{
 		super();
 	}
 	public ASTExpressionAssignment(ASTExpression variable,ASTExpression exp,String operator){
+		this();
 		this.object = variable;
 		this.exp = exp;
 		this.op = new ASTExpressionUnitOperator(operator);
@@ -29,7 +30,7 @@ public class ASTExpressionAssignment extends ASTExpression{
 		return super.toSyntax();
 	}
 	public String typeof(){
-		return super.typeof()+NODE_TYPE;
+		return super.typeof()+"->"+NODE_TYPE;
 	}
 	public ASTExpression getObject(){
 		return this.object;

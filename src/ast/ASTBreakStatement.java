@@ -8,6 +8,7 @@ package ast;
 public class ASTBreakStatement extends ASTSimpleStatement {
 	private static final String NODE_TYPE = "Break Statement";
 	public ASTBreakStatement() {	
+		super();
 	}
 	//virtual  method
 	public String toSyntax(){

@@ -8,8 +8,10 @@ import java.util.*;
  *
  */
 public final class ASTPassStatement extends ASTBlockStatement {
+	private static final String NODE_TYPE = "Pass Statement";
 	private ArrayList<ASTStatement> statements;
 	public ASTPassStatement() {
+		super();
 		this.statements = new ArrayList<ASTStatement>();
 	}
 	public void addStatement(ASTStatement s){
@@ -23,5 +25,7 @@ public final class ASTPassStatement extends ASTBlockStatement {
 		}
 		return this.result;
 	}
-
+	public String typeof(){
+		return super.typeof()+"->"+NODE_TYPE;
+	}
 }

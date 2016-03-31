@@ -18,17 +18,29 @@ public class ASTNode{
 	protected ASTNode parent;
 	protected String language;
 	protected String result;
+	protected boolean isBlock;
+	protected ArrayList<ASTNode> children;
 	public ASTNode()
 	{
+		this.children = new ArrayList<ASTNode>();
 		parent = null;
 		this.result = "";
-		
+		this.isBlock = false;
 	}
 	
 	protected void addParent(ASTNode p){
 		this.parent = p;
 	}
-	
+	protected boolean isAblock(){
+		return this.isBlock;
+	}
+	protected ASTNode getParent(){
+		return this.parent;
+	}
+	protected void addChild(ASTNode a){
+		this.children.add(a);
+		a.parent = this;
+	}
 	/**
 	 * @deprecated methods to check whether a node is supported in specific programming language
 	 * This is handled in parser level.

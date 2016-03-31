@@ -14,6 +14,7 @@ public class ASTExpressionUnitIdentifier extends ASTExpressionUnit{
 	}
 
 	public ASTExpressionUnitIdentifier(String name){
+		this();
 		this.name = name;
 	}
 	public String toSyntax(){

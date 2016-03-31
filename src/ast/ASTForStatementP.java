@@ -14,6 +14,7 @@ public class ASTForStatementP extends ASTForStatement {
 	private ASTExpressionUnitIdentifier variable;
 	private ASTExpressionUnit range;
 	public ASTForStatementP() {
+		super();
 		this.statements = new ArrayList<ASTStatement>();
 		this.elseBranch = new ArrayList<ASTStatement>();
 	}

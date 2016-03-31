@@ -13,6 +13,7 @@ public class ASTFunction extends ASTBlockStatement{
 	protected ASTExpressionUnitIdentifier name;
 	protected ArrayList<ASTStatement> statements;
 	public ASTFunction(String name){
+		super();
 		ASTExpressionUnitIdentifier functionName = new ASTExpressionUnitIdentifier(name);
 		this.name = functionName;
 		functionName.addParent(this);
@@ -26,5 +27,7 @@ public class ASTFunction extends ASTBlockStatement{
 	{
 		return this.result;
 	}
-	
+	public String typeof(){
+		return super.typeof()+"->"+NODE_TYPE;
+	}
 }

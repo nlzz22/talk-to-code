@@ -9,6 +9,7 @@ public class ASTBreakStatementP extends ASTBreakStatement {
 	// Since python does not support break (LABEL), therefore only simple break
 	// statement will be created
 	public ASTBreakStatementP() {
+		super();
 	}
 
 	public String toSyntax() {

@@ -15,6 +15,7 @@ public class ASTStructDeclaration extends ASTBlockStatement {
 	private ArrayList<ASTDeclarationStatementC> attributes;
 	
 	public ASTStructDeclaration(String name) {
+		super();
 		ASTExpressionUnitIdentifier structName = new ASTExpressionUnitIdentifier(name);
 		this.name = structName;
 		structName.addParent(this);
@@ -33,6 +34,6 @@ public class ASTStructDeclaration extends ASTBlockStatement {
 		return this.result;
 	}
 	public String typeof(){
-		return super.typeof()+NODE_TYPE;
+		return super.typeof()+"->"+NODE_TYPE;
 	}
 }

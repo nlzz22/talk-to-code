@@ -14,6 +14,8 @@ import java.util.*;
 	respective AST nodes in parsing respective structural commands 
 */
 public class ASTParser implements ASTParserConstants {
+  private static ASTNode current = new ASTNode();
+  private static ASTNode program = new ASTNode();
   public static void main(String args []) throws ParseException
   {
     ASTParser parser = new ASTParser(System.in);
@@ -38,6 +40,31 @@ public class ASTParser implements ASTParserConstants {
         System.out.println(e.getMessage());
         break;
       }
+    }
+  }
+
+  private static void getStructure(ASTNode current)
+  {
+    Stack < ASTNode > stack = new Stack < ASTNode > ();
+    ASTNode temp = current;
+    stack.push(temp);
+    while (temp.parent != null)
+    {
+      if (temp.isAblock())
+      {
+        stack.push(temp);
+      }
+      temp = temp.getParent();
+    }
+    int counter = 0;
+    while (!stack.isEmpty())
+    {
+      String indent = "";
+      for (int i = 0; i < counter; i++)
+      {
+        indent += "\u005ct";
+      }
+      System.out.println(indent + stack.pop().typeof());
     }
   }
 
@@ -1042,6 +1069,7 @@ public class ASTParser implements ASTParserConstants {
       case LBRACE:
       case BANG:
       case TILDE:
+      case HOOK:
       case INCR:
       case DECR:
       case MINUS:
@@ -1100,6 +1128,7 @@ public class ASTParser implements ASTParserConstants {
       case LBRACE:
       case BANG:
       case TILDE:
+      case HOOK:
       case INCR:
       case DECR:
       case MINUS:
@@ -1146,6 +1175,7 @@ public class ASTParser implements ASTParserConstants {
         case LBRACE:
         case BANG:
         case TILDE:
+        case HOOK:
         case INCR:
         case DECR:
         case MINUS:
@@ -1282,6 +1312,7 @@ public class ASTParser implements ASTParserConstants {
       case LBRACE:
       case BANG:
       case TILDE:
+      case HOOK:
       case INCR:
       case DECR:
       case MINUS:
@@ -1339,6 +1370,7 @@ public class ASTParser implements ASTParserConstants {
       case LBRACE:
       case BANG:
       case TILDE:
+      case HOOK:
       case INCR:
       case DECR:
       case MINUS:
@@ -1396,6 +1428,7 @@ public class ASTParser implements ASTParserConstants {
       case LBRACE:
       case BANG:
       case TILDE:
+      case HOOK:
       case INCR:
       case DECR:
       case MINUS:
@@ -1468,6 +1501,7 @@ public class ASTParser implements ASTParserConstants {
         case LBRACE:
         case BANG:
         case TILDE:
+        case HOOK:
         case INCR:
         case DECR:
         case MINUS:
@@ -1517,6 +1551,7 @@ public class ASTParser implements ASTParserConstants {
         case LBRACE:
         case BANG:
         case TILDE:
+        case HOOK:
         case INCR:
         case DECR:
         case MINUS:
@@ -1759,6 +1794,14 @@ public class ASTParser implements ASTParserConstants {
     throw new Error("Missing return statement in function");
   }
 
+  static final public ASTStatement query() throws ParseException {
+    jj_consume_token(HOOK);
+    jj_consume_token(STRUCT);
+    getStructure(current);
+    {if (true) return new ASTStatement();}
+    throw new Error("Missing return statement in function");
+  }
+
   static final public ASTStatement statementC() throws ParseException {
   ASTStatement result;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -1785,6 +1828,7 @@ public class ASTParser implements ASTParserConstants {
     case LABEL:
     case INCLUDE:
       result = simpleStatementC();
+    current = result;
     {if (true) return result;}
       break;
     case DO:
@@ -1795,7 +1839,12 @@ public class ASTParser implements ASTParserConstants {
     case FUNCTION_DEC:
     case STRUCT_DEC:
       result = blockStatementC();
+    current = result;
     {if (true) return result;}
+      break;
+    case HOOK:
+      query();
+    {if (true) return new ASTStatement();}
       break;
     default:
       jj_la1[50] = jj_gen;
@@ -1811,11 +1860,17 @@ public class ASTParser implements ASTParserConstants {
     jj_consume_token(PROGRAM_C);
     name = jj_consume_token(IDENTIFIER);
     ASTCompilationUnitC result = new ASTCompilationUnitC(name.image);
+    current = result;
     label_22:
     while (true) {
       statement = statementC();
-      result.addStatement(statement);
-      System.out.println(statement.toSyntax());
+      if (!statement.toSyntax().equals("\u005cn"))
+      {
+        //current = statement;
+        result.addStatement(statement);
+        //current.addStatement(statement);
+        System.out.println(statement.toSyntax());
+      }
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case BREAK:
       case CONTINUE:
@@ -1830,6 +1885,7 @@ public class ASTParser implements ASTParserConstants {
       case LBRACE:
       case BANG:
       case TILDE:
+      case HOOK:
       case INCR:
       case DECR:
       case MINUS:
@@ -1861,6 +1917,7 @@ public class ASTParser implements ASTParserConstants {
   static final public ASTCompilationUnit program() throws ParseException {
   ASTCompilationUnitC result;
     result = programC();
+    current = result;
     System.out.println(result.toSyntax());
     //result.toFile();
     {if (true) return result;}
@@ -1902,7 +1959,7 @@ public class ASTParser implements ASTParserConstants {
       jj_la1_2 = new int[] {0x60000000,0x0,0x80000000,0x0,0x40,0x61108,0x0,0x0,0x0,0x0,0x0,0x0,0x40,0x80280000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x280000,0x60000000,0x80000000,0x80280000,0x80280000,0x0,0x0,0x40,0x0,0x0,0x0,0x80280080,0x80280080,0x80280080,0x0,0x80280000,0x80280000,0x80280000,0x80280080,0x80280080,0x80280080,0x0,0x80280080,0x80280080,0x0,0x0,0x80280000,0x80280000,0x80,0x80280080,0x80280080,};
    }
    private static void jj_la1_init_3() {
-      jj_la1_3 = new int[] {0x1807f9f8,0x7f80000,0x8601,0x600,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x20009601,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x1807f9f8,0x9601,0x9601,0x20009601,0x7f80000,0x40000000,0x0,0x0,0x0,0x0,0x60009601,0x60009601,0x60009601,0x0,0x20009601,0x20009601,0x20009601,0x60009601,0x60009601,0x60009601,0x0,0x60009601,0x60009601,0x0,0x0,0x20009601,0x60009601,0x0,0x60009601,0x60009601,};
+      jj_la1_3 = new int[] {0x1807f9f8,0x7f80000,0x8601,0x600,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x20009601,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x1807f9f8,0x9601,0x9601,0x20009601,0x7f80000,0x40000000,0x0,0x0,0x0,0x0,0x60009603,0x60009603,0x60009603,0x0,0x20009601,0x20009601,0x20009601,0x60009603,0x60009603,0x60009603,0x0,0x60009603,0x60009603,0x0,0x0,0x20009601,0x60009601,0x0,0x60009603,0x60009603,};
    }
    private static void jj_la1_init_4() {
       jj_la1_4 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x4000,0x0,0x4000,0x0,0x0,0x18807,0x80000,0x8001,0x8001,0x2000,0x2000,0x80000,0x0,0x18007,0x0,0x0,0x18807,0x18807,0x8,0x0,0x0,0x4000,0x2000,0x2000,0x40258807,0x40258807,0x40258807,0x100,0x18807,0x18807,0x18807,0x40258807,0x40258807,0x40258807,0x0,0x40258807,0x40258807,0x0,0x0,0x18807,0x258807,0x40000000,0x40258807,0x40258807,};

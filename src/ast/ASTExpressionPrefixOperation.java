@@ -26,6 +26,7 @@ public class ASTExpressionPrefixOperation extends ASTExpression{
 	}
 
 	public ASTExpressionPrefixOperation(String operator,ASTExpressionUnitIdentifier id1){
+		this();
 		this.op = new ASTExpressionUnitOperator(operator);
 		this.identifier1 = id1;
 
@@ -33,6 +34,7 @@ public class ASTExpressionPrefixOperation extends ASTExpression{
 		this.identifier1.parent.addParent(this);
 	}
 	public ASTExpressionPrefixOperation(String operator,ASTExpressionUnitLiteral id1){
+		this();
 		this.op = new ASTExpressionUnitOperator(operator);
 		this.identifier1 = id1;
 
@@ -40,6 +42,7 @@ public class ASTExpressionPrefixOperation extends ASTExpression{
 		this.identifier1.addParent(this);
 	}
 	public ASTExpressionPrefixOperation(String operator,ASTExpression id1){
+		this();
 		this.op = new ASTExpressionUnitOperator(operator);
 		this.identifier1 = id1;
 

@@ -19,6 +19,7 @@ public class ASTIfStatement extends ASTBlockStatement {
 		initialize();
 	}
 	public ASTIfStatement(ASTExpression e){
+		super();
 		this.condition = e;
 		initialize();
 		e.addParent(this);

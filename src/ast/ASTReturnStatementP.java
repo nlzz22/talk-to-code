@@ -9,6 +9,7 @@ import java.util.*;
 public class ASTReturnStatementP extends ASTReturnStatement {
 	ArrayList<ASTExpression> exps;
 	public ASTReturnStatementP() {
+		super();
 		this.exps = new ArrayList<ASTExpression>();
 	}
 	public void addExp(ASTExpression exp){

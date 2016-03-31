@@ -6,17 +6,20 @@ package ast;
  * in C/Java programs
  */
 public class ASTExpressionUnitTypesArray extends ASTExpressionUnitTypes {
+	private static final String NODE_TYPE = "Array Type";
 	private int dimension;
 	public ASTExpressionUnitTypesArray(){
-		
+		super();
 	}
 
 	public ASTExpressionUnitTypesArray(String type) {
+		super();
 		this.type = type;
 		this.dimension = 1;
 		
 	}
 	public ASTExpressionUnitTypesArray(String type,int dimension){
+		this();
 		this.type = type;
 		this.dimension = dimension;
 	}
@@ -27,5 +30,8 @@ public class ASTExpressionUnitTypesArray extends ASTExpressionUnitTypes {
 			this.result+="[]";
 		}
 		return this.result;
+	}
+	public String typeof(){
+		return super.typeof()+"->"+NODE_TYPE;
 	}
 }

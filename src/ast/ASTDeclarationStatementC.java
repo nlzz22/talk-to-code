@@ -15,8 +15,10 @@ public final class ASTDeclarationStatementC extends ASTDeclarationStatement {
 	//modifiers like "const" might be used to define variables
 	private ArrayList<String> modifiers;
 	public ASTDeclarationStatementC() {
+		super();
 	}
 	public ASTDeclarationStatementC(String type){
+		super();
 		this.type = new ASTExpressionUnitTypes(type);
 		this.variables = new ArrayList<ASTExpressionUnit>();
 		this.exps = new ArrayList<ASTExpression>();

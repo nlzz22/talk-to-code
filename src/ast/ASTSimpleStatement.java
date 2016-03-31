@@ -15,6 +15,6 @@ public class ASTSimpleStatement extends ASTStatement{
 		return this.result;
 	}
 	public String typeof(){
-		return super.typeof()+NODE_TYPE;
+		return super.typeof()+"->"+NODE_TYPE;
 	}
 }

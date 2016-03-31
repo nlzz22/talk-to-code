@@ -7,12 +7,14 @@ import java.util.*;
  * (Python does not support swtich statement)
  */
 public class ASTSwitchStatement extends ASTBlockStatement {
+	private static final String NODE_TYPE = "Switch Statement";
 	ASTExpression exp;
 	ArrayList<ASTExpression> cases;
 	ArrayList<ArrayList<ASTStatement>> blocks;
 	ArrayList<ASTStatement> defaultBranch;
 	int currentCase;
 	public ASTSwitchStatement(ASTExpression exp) {
+		super();
 		this.exp = exp;
 		exp.addParent(this);
 		this.cases = new ArrayList<ASTExpression>();
@@ -67,5 +69,8 @@ public class ASTSwitchStatement extends ASTBlockStatement {
 		}
 		this.result+="\n}\n";
 		return this.result;
+	}
+	public String typeof(){
+		return super.typeof()+"->"+NODE_TYPE;
 	}
 }

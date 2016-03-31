@@ -7,9 +7,11 @@ public class ASTContinueStatementJ extends ASTContinueStatement {
 	//Java supports continue (label)
 	ASTExpressionUnitIdentifier label;
 	public ASTContinueStatementJ() {
+		super();
 		this.label = null;
 	}
 	public ASTContinueStatementJ(ASTExpressionUnitIdentifier label) {
+		this();
 		this.label = label;
 		label.addParent(this);
 	}

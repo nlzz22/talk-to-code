@@ -16,6 +16,7 @@ public class ASTExpressionInfixOperation extends ASTExpression{
 	}
 
 	public ASTExpressionInfixOperation(String operator,ASTExpression id1,ASTExpression id2) {
+		this();
 		this.op =  new ASTExpressionUnitOperator(operator);
 		this.identifier1 = id1;
 		this.identifier2 = id2;

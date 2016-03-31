@@ -20,7 +20,7 @@ public class ASTExpressionUnit extends ASTExpression {
 	}
 
 	public ASTExpressionUnit(String name,String type){
-		super(new ASTExpression(false));
+		super();
 		this.name = name;
 		this.type = type;
 		

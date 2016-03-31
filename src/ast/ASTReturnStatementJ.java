@@ -9,6 +9,7 @@ package ast;
 public class ASTReturnStatementJ extends ASTReturnStatement {
 	private ASTExpression exp;
 	public ASTReturnStatementJ(ASTExpression exp){
+		super();
 		this.exp = exp;
 		exp.addParent(this);
 	}

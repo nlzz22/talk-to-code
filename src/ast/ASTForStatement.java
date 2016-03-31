@@ -6,8 +6,9 @@ package ast;
  *
  */
 public class ASTForStatement extends ASTBlockStatement{
-	private static final String NODE_TYPE = "Block Statement";
+	private static final String NODE_TYPE = "For Statement";
 	public ASTForStatement() {
+		super();
 	}
 	//virtual method
 	public String toSyntax(){
@@ -15,6 +16,6 @@ public class ASTForStatement extends ASTBlockStatement{
 		return this.result;
 	}
 	public String typeof(){
-		return super.typeof()+NODE_TYPE;
+		return super.typeof()+"->"+NODE_TYPE;
 	}
 }

@@ -20,6 +20,7 @@ public class ASTExpressionPostfixOperation extends ASTExpression{
 	}
 
 	public ASTExpressionPostfixOperation(String operator,ASTExpressionUnitIdentifier id1){
+		this();
 		this.op = new ASTExpressionUnitOperator(operator);
 		this.identifier1 = id1;
 		this.op.addParent(this);

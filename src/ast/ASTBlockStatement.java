@@ -9,6 +9,8 @@ package ast;
 public class ASTBlockStatement extends ASTStatement {
 	private static final String NODE_TYPE = "Block Statement";
 	public ASTBlockStatement() {
+		super();
+		this.isBlock = true;
 	}
 	//virtual method
 	public String toSyntax(){

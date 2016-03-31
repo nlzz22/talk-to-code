@@ -11,28 +11,30 @@ import java.util.ArrayList;
  */
 public class ASTExpressionUnitAccess extends ASTExpressionUnit {
 	private static final String NODE_TYPE = "Expression Access";
-	private ASTExpressionUnit parent;
+	private ASTExpressionUnit accessParent;
 	private ASTExpressionUnit child;
 	public ASTExpressionUnitAccess(){
 		super();
 	}
 	public ASTExpressionUnitAccess(ASTExpressionUnit parent,ASTExpressionUnit child){
-		this.parent = parent;
+		this();
+		this.accessParent = parent;
 		this.child = child;
-		this.parent.parent = this;
-		this.child.parent = this;
+		this.accessParent.parent = this;
+		this.child.parent = this.accessParent;
 	
 	}
 	public ASTExpressionUnitAccess(ASTExpressionUnit parent){
-		this.parent = parent;
+		this();
+		this.accessParent = parent;
 		
-		this.parent.parent = this;
+		this.accessParent.parent = this;
 
 	
 	}
 	public void addChild(ASTExpressionUnit child){
 		this.child = child;
-		child.addParent(this);
+		child.addParent(this.accessParent);
 	}
 	
 	public static ASTExpressionUnitAccess generateNestedAccess(ArrayList<String> ids){
@@ -54,10 +56,10 @@ public class ASTExpressionUnitAccess extends ASTExpressionUnit {
 	}
 	//syntax construction
 	public String toSyntax(){
-		this.result = this.parent.toSyntax()+"."+this.child.toSyntax();
+		this.result = this.accessParent.toSyntax()+"."+this.child.toSyntax();
 		return super.toSyntax();
 	}
 	public String typeof(){
-		return super.typeof()+NODE_TYPE;
+		return super.typeof()+"->"+NODE_TYPE;
 	}
 }

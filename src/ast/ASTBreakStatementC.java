@@ -11,6 +11,7 @@ public final class ASTBreakStatementC extends ASTBreakStatement {
 	ASTExpressionUnitIdentifier label;
 
 	public ASTBreakStatementC() {
+		super();
 		this.label = null;
 	}
 

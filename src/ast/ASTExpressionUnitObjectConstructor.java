@@ -11,6 +11,7 @@ public class ASTExpressionUnitObjectConstructor extends ASTExpressionUnit {
 	protected ASTExpressionUnitTypes type;
 	protected ArrayList<ASTExpression> parameters;
 	public ASTExpressionUnitObjectConstructor(String type){
+		super();
 		this.type = new ASTExpressionUnitTypes(type);
 		this.type.addParent(this);
 		this.parameters = new ArrayList<ASTExpression>();
@@ -22,5 +23,8 @@ public class ASTExpressionUnitObjectConstructor extends ASTExpressionUnit {
 	//virtual method
 	public String toSyntax(){
 		return this.result;
+	}
+	public String typeof(){
+		return super.typeof()+"->"+NODE_TYPE;
 	}
 }

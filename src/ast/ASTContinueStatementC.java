@@ -5,6 +5,7 @@ package ast;
  */
 public class ASTContinueStatementC extends ASTContinueStatement {
 	public ASTContinueStatementC() {
+		super();
 	}
 
 	//continue statement syntax generation

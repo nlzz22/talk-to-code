@@ -6,12 +6,15 @@ import java.util.*;
  * 
  */
 public class ASTWhileStatement extends ASTBlockStatement {
+	private static final String NODE_TYPE = "While Statement";
 	protected ASTExpression condition;
 	protected ArrayList<ASTStatement> statements;
 	public ASTWhileStatement(){
+		super();
 		this.statements = new ArrayList<ASTStatement>();
 	}
 	public ASTWhileStatement(ASTExpression exp) {
+		super();
 		this.condition = exp;
 		exp.addParent(this);
 		this.statements = new ArrayList<ASTStatement>();
@@ -22,5 +25,8 @@ public class ASTWhileStatement extends ASTBlockStatement {
 	}
 	public String toSyntax(){
 		return this.result;
+	}
+	public String typeof(){
+		return super.typeof()+"->"+NODE_TYPE;
 	}
 }

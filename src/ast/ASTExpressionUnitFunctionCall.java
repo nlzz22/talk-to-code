@@ -12,6 +12,7 @@ public class ASTExpressionUnitFunctionCall extends ASTExpressionUnit{
 	private String functionName;
 	private ArrayList<ASTExpression> parameters;
 	public ASTExpressionUnitFunctionCall(String name){
+		super();
 		this.functionName = name;
 		this.parameters = new ArrayList<ASTExpression>();
 	}

@@ -15,8 +15,10 @@ public final class ASTDeclarationStatementJ extends ASTDeclarationStatement {
 	private ArrayList<String> modifiers;
 	
 	public ASTDeclarationStatementJ() {
+		super();
 	}
 	public ASTDeclarationStatementJ(String type){
+		super();
 		this.type = new ASTExpressionUnitTypes(type);
 		this.variables = new ArrayList<ASTExpression>();
 		this.modifiers = new ArrayList<String>();

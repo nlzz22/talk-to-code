@@ -13,6 +13,7 @@ public class ASTDoWhileStatement extends ASTBlockStatement {
 	protected ASTExpression exp;
 	protected ArrayList<ASTStatement> statements;
 	public ASTDoWhileStatement() {
+		super();
 		this.exp = null;
 		this.statements = new ArrayList<ASTStatement>();
 	}
@@ -26,7 +27,7 @@ public class ASTDoWhileStatement extends ASTBlockStatement {
 		s.addParent(this);
 	}
 	public String typeof(){
-		return super.typeof()+NODE_TYPE;
+		return super.typeof()+"->"+NODE_TYPE;
 	}
 	//code construction
 	public String toSyntax(){

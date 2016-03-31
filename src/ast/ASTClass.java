@@ -7,11 +7,13 @@ import java.util.ArrayList;
  *
  */
 public class ASTClass extends ASTBlockStatement {
+	private static final String NODE_TYPE = "Class Declaration";
 	//the class name
 	protected ASTExpressionUnitIdentifier name;
 	//A class can have multiple statements like functions and attributes 
 	protected ArrayList<ASTStatement> statements;
 	public ASTClass(String name) {
+		super();
 		ASTExpressionUnitIdentifier className = new ASTExpressionUnitIdentifier(name);
 		this.name = className;
 		className.addParent(this);
@@ -24,5 +26,8 @@ public class ASTClass extends ASTBlockStatement {
 	//virtual method
 	public String toSyntax(){
 		return this.result;
+	}
+	public String typeof(){
+		return super.typeof()+"->"+NODE_TYPE;
 	}
 }

@@ -7,13 +7,14 @@ package ast;
  *
  */
 public class ASTReturnStatement extends ASTSimpleStatement {
-	private static final String NODE_TYPE = "Block Statement";
+	private static final String NODE_TYPE = "Return Statement";
 	public ASTReturnStatement() {
+		super();
 	}
 	public String toSyntax(){
 		return this.result;
 	}
 	public String typeof(){
-		return super.typeof()+NODE_TYPE;
+		return super.typeof()+"->"+NODE_TYPE;
 	}
 }

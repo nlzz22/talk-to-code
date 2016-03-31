@@ -10,6 +10,7 @@ public final class ASTBreakStatementJ extends ASTBreakStatement {
 	// specifies which label is going to break
 	ASTExpressionUnitIdentifier label;
 	public ASTBreakStatementJ() {
+		super();
 		this.label = null;
 	}
 	public ASTBreakStatementJ(ASTExpressionUnitIdentifier label) {

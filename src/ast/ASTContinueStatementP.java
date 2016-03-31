@@ -5,6 +5,7 @@ package ast;
  */
 public class ASTContinueStatementP extends ASTContinueStatement {
 	public ASTContinueStatementP() {
+		super();
 	}
 	//syntax construction
 	public String toSyntax(){

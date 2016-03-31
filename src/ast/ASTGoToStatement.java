@@ -6,8 +6,10 @@ package ast;
  * statement in C programs
  */
 public class ASTGoToStatement extends ASTSimpleStatement {
+	private static final String NODE_TYPE = "Goto Statement";
 	ASTExpressionUnitIdentifier label;
 	public ASTGoToStatement(ASTExpressionUnitIdentifier label) {
+		super();
 		this.label = label;
 		label.addParent(this);
 	}
@@ -17,5 +19,7 @@ public class ASTGoToStatement extends ASTSimpleStatement {
 		this.result+=";\n";
 		return this.result;
 	}
-
+	public String typeof(){
+		return super.typeof()+"->"+NODE_TYPE;
+	}
 }

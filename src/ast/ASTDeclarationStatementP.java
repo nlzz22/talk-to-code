@@ -10,6 +10,7 @@ public final class ASTDeclarationStatementP extends ASTDeclarationStatement {
 	//but all of them need to be initialized
 	private ArrayList<ASTExpressionAssignment> variables;
 	public ASTDeclarationStatementP() {
+		super();
 	}
 	//code construction
 	//format:

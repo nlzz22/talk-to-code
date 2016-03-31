@@ -12,6 +12,7 @@ public class ASTForStatementC extends ASTForStatement {
 	private ASTExpression incrementCondition;
 	private ArrayList<ASTStatement> statements;
 	public ASTForStatementC() {
+		super();
 		this.initialCondition = new ASTExpressionUnitLiteral("1");
 		this.finalCondition = new ASTExpressionUnitLiteral("1");
 		this.incrementCondition = new ASTExpressionUnitLiteral("1");
