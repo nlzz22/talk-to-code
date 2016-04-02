@@ -42,4 +42,17 @@ public class ASTDoWhileStatement extends ASTBlockStatement {
 		this.result+= ");\n";
 		return this.result;
 	}
+	public String toTree(int indent){
+		StringBuilder sb = new StringBuilder("");
+		for(int i = 0;i<indent;i++){
+			sb.append("\t");
+		}
+		sb.append(this.typeof());
+		sb.append("\n");
+		for(ASTStatement s:this.statements){
+			sb.append(s.toTree(indent+1));
+			sb.append("\n");
+		}
+		return sb.toString();
+	}
 }

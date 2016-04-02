@@ -10,7 +10,6 @@ public class ASTForStatementC extends ASTForStatement {
 	private ASTExpression initialCondition;
 	private ASTExpression finalCondition;
 	private ASTExpression incrementCondition;
-	private ArrayList<ASTStatement> statements;
 	public ASTForStatementC() {
 		super();
 		this.initialCondition = new ASTExpressionUnitLiteral("1");

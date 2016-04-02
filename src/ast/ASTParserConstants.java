@@ -333,15 +333,17 @@ public interface ASTParserConstants {
   /** RegularExpression Id. */
   int PARAMETER_A = 168;
   /** RegularExpression Id. */
-  int C_TYPES_MODIFIERS_SIGNED = 169;
+  int TREE = 169;
   /** RegularExpression Id. */
-  int C_TYPES_MODIFIERS_UNSIGNED = 170;
+  int C_TYPES_MODIFIERS_SIGNED = 170;
   /** RegularExpression Id. */
-  int IDENTIFIER = 171;
+  int C_TYPES_MODIFIERS_UNSIGNED = 171;
   /** RegularExpression Id. */
-  int LETTER = 172;
+  int IDENTIFIER = 172;
   /** RegularExpression Id. */
-  int PART_LETTER = 173;
+  int LETTER = 173;
+  /** RegularExpression Id. */
+  int PART_LETTER = 174;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -519,6 +521,7 @@ public interface ASTParserConstants {
     "\"#dec_end\"",
     "\"#dimension\"",
     "\"#parameter_a\"",
+    "\"#tree\"",
     "\"signed\"",
     "\"unsigned\"",
     "<IDENTIFIER>",

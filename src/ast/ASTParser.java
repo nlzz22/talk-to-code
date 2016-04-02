@@ -15,7 +15,9 @@ import java.util.*;
 */
 public class ASTParser implements ASTParserConstants {
   private static ASTNode current = new ASTNode();
+
   private static ASTNode program = new ASTNode();
+
   public static void main(String args []) throws ParseException
   {
     ASTParser parser = new ASTParser(System.in);
@@ -65,7 +67,18 @@ public class ASTParser implements ASTParserConstants {
         indent += "\u005ct";
       }
       System.out.println(indent + stack.pop().typeof());
+      counter++;
     }
+  }
+
+  private static void getTree(ASTNode current)
+  {
+    ASTNode temp = current;
+    while (temp.parent != null)
+    {
+      temp = temp.getParent();
+    }
+    System.out.println(temp.toTree(0));
   }
 
   static final public String variable() throws ParseException {
@@ -939,12 +952,13 @@ public class ASTParser implements ASTParserConstants {
   }
 
 /*Block Statement*/
-  static final public ASTStructDeclaration structDeclareStatement() throws ParseException {
+  static final public ASTStructDeclaration structDeclareStatement(ASTNode parent) throws ParseException {
   Token name;
   ASTDeclarationStatementC attribute;
     jj_consume_token(STRUCT_DEC);
     name = jj_consume_token(IDENTIFIER);
     ASTStructDeclaration result = new ASTStructDeclaration(name.image);
+    result.addParent(parent);
     jj_consume_token(STRUCT_START);
     label_10:
     while (true) {
@@ -966,7 +980,7 @@ public class ASTParser implements ASTParserConstants {
     throw new Error("Missing return statement in function");
   }
 
-  static final public ASTFunction functionStatementC() throws ParseException {
+  static final public ASTFunction functionStatementC(ASTNode parent) throws ParseException {
   String modifier;
   String returnType;
   Token name;
@@ -977,6 +991,7 @@ public class ASTParser implements ASTParserConstants {
     jj_consume_token(FUNCTION_DEC);
     name = jj_consume_token(IDENTIFIER);
     ASTFunctionC result = new ASTFunctionC(name.image);
+    result.addParent(parent);
     label_11:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -1092,7 +1107,7 @@ public class ASTParser implements ASTParserConstants {
         jj_la1[32] = jj_gen;
         break label_13;
       }
-      s = statementC();
+      s = statementC(result);
       result.addStatement(s);
       System.out.println(s.toSyntax());
     }
@@ -1102,7 +1117,7 @@ public class ASTParser implements ASTParserConstants {
     throw new Error("Missing return statement in function");
   }
 
-  static final public ASTIfStatementC if_statementC() throws ParseException {
+  static final public ASTIfStatementC if_statementC(ASTNode parent) throws ParseException {
   ASTExpression condition;
   ASTStatement stat1;
   ASTStatement stat2;
@@ -1110,6 +1125,7 @@ public class ASTParser implements ASTParserConstants {
     jj_consume_token(CONDITION);
     condition = expressionC();
     ASTIfStatementC result = new ASTIfStatementC(condition);
+    result.addParent(parent);
     System.out.println(condition.toSyntax());
     jj_consume_token(IF_BRANCH_START);
     label_14:
@@ -1151,7 +1167,7 @@ public class ASTParser implements ASTParserConstants {
         jj_la1[33] = jj_gen;
         break label_14;
       }
-      stat1 = statementC();
+      stat1 = statementC(result);
       result.setIf(stat1);
       System.out.println(stat1.toSyntax());
     }
@@ -1198,7 +1214,7 @@ public class ASTParser implements ASTParserConstants {
           jj_la1[34] = jj_gen;
           break label_15;
         }
-        stat2 = statementC();
+        stat2 = statementC(result);
         result.setElse(stat2);
         System.out.println(stat2.toSyntax());
       }
@@ -1213,13 +1229,14 @@ public class ASTParser implements ASTParserConstants {
     throw new Error("Missing return statement in function");
   }
 
-  static final public ASTForStatementC forStatementC() throws ParseException {
+  static final public ASTForStatementC forStatementC(ASTNode parent) throws ParseException {
   ASTExpression init;
   ASTExpression end;
   ASTExpression increment;
   ASTStatement temp;
     jj_consume_token(FOR);
     ASTForStatementC result = new ASTForStatementC();
+    result.addParent(parent);
     jj_consume_token(CONDITION);
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case LPAREN:
@@ -1335,7 +1352,7 @@ public class ASTParser implements ASTParserConstants {
         jj_la1[39] = jj_gen;
         break label_16;
       }
-      temp = statementC();
+      temp = statementC(result);
       result.addStatement(temp);
       System.out.println(temp.toSyntax());
     }
@@ -1345,13 +1362,14 @@ public class ASTParser implements ASTParserConstants {
     throw new Error("Missing return statement in function");
   }
 
-  static final public ASTWhileStatementC whileStatementC() throws ParseException {
+  static final public ASTWhileStatementC whileStatementC(ASTNode parent) throws ParseException {
   ASTExpression exp;
   ASTStatement temp;
     jj_consume_token(WHILE);
     jj_consume_token(CONDITION);
     exp = expressionC();
     ASTWhileStatementC result = new ASTWhileStatementC(exp);
+    result.addParent(parent);
     System.out.println(exp.toSyntax());
     jj_consume_token(WHILE_START);
     label_17:
@@ -1393,7 +1411,7 @@ public class ASTParser implements ASTParserConstants {
         jj_la1[40] = jj_gen;
         break label_17;
       }
-      temp = statementC();
+      temp = statementC(result);
       result.addStatement(temp);
       System.out.println(temp.toSyntax());
     }
@@ -1403,13 +1421,14 @@ public class ASTParser implements ASTParserConstants {
     throw new Error("Missing return statement in function");
   }
 
-  static final public ASTDoWhileStatement doWhileStatement() throws ParseException {
+  static final public ASTDoWhileStatement doWhileStatement(ASTNode parent) throws ParseException {
   ASTExpression exp;
   ASTStatement temp;
     jj_consume_token(DO);
     jj_consume_token(CONDITION);
     exp = expressionC();
     ASTDoWhileStatement result = new ASTDoWhileStatement(exp);
+    result.addParent(parent);
     System.out.println(exp.toSyntax());
     jj_consume_token(WHILE_START);
     label_18:
@@ -1451,7 +1470,7 @@ public class ASTParser implements ASTParserConstants {
         jj_la1[41] = jj_gen;
         break label_18;
       }
-      temp = statementC();
+      temp = statementC(result);
       result.addStatement(temp);
       System.out.println(temp.toSyntax());
     }
@@ -1461,7 +1480,7 @@ public class ASTParser implements ASTParserConstants {
     throw new Error("Missing return statement in function");
   }
 
-  static final public ASTSwitchStatement switchStatement() throws ParseException {
+  static final public ASTSwitchStatement switchStatement(ASTNode parent) throws ParseException {
   ASTExpression condition;
   ASTExpression case_condition;
   ASTStatement temp;
@@ -1469,6 +1488,7 @@ public class ASTParser implements ASTParserConstants {
     jj_consume_token(CONDITION);
     condition = expressionC();
     ASTSwitchStatement result = new ASTSwitchStatement(condition);
+    result.addParent(parent);
     System.out.println(condition.toSyntax());
     label_19:
     while (true) {
@@ -1524,7 +1544,7 @@ public class ASTParser implements ASTParserConstants {
           jj_la1[43] = jj_gen;
           break label_20;
         }
-        temp = statementC();
+        temp = statementC(result);
         result.addStatement(temp);
         System.out.println(temp.toSyntax());
       }
@@ -1574,7 +1594,7 @@ public class ASTParser implements ASTParserConstants {
           jj_la1[44] = jj_gen;
           break label_21;
         }
-        temp = statementC();
+        temp = statementC(result);
         result.addStatement(temp);
         System.out.println(temp.toSyntax());
       }
@@ -1749,7 +1769,7 @@ public class ASTParser implements ASTParserConstants {
     throw new Error("Missing return statement in function");
   }
 
-  static final public ASTBlockStatement blockStatementC() throws ParseException {
+  static final public ASTBlockStatement blockStatementC(ASTNode parent) throws ParseException {
   ASTStructDeclaration structDeclare;
   ASTDoWhileStatement doWhile;
   ASTForStatement forStatement;
@@ -1759,31 +1779,31 @@ public class ASTParser implements ASTParserConstants {
   ASTSwitchStatement switchStatement;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case STRUCT_DEC:
-      structDeclare = structDeclareStatement();
+      structDeclare = structDeclareStatement(parent);
     {if (true) return structDeclare;}
       break;
     case DO:
-      doWhile = doWhileStatement();
+      doWhile = doWhileStatement(parent);
     {if (true) return doWhile;}
       break;
     case FOR:
-      forStatement = forStatementC();
+      forStatement = forStatementC(parent);
     {if (true) return forStatement;}
       break;
     case FUNCTION_DEC:
-      functionDeclare = functionStatementC();
+      functionDeclare = functionStatementC(parent);
     {if (true) return functionDeclare;}
       break;
     case IF:
-      ifStatement = if_statementC();
+      ifStatement = if_statementC(parent);
     {if (true) return ifStatement;}
       break;
     case WHILE:
-      whileStatement = whileStatementC();
+      whileStatement = whileStatementC(parent);
     {if (true) return whileStatement;}
       break;
     case SWITCH:
-      switchStatement = switchStatement();
+      switchStatement = switchStatement(parent);
     {if (true) return switchStatement;}
       break;
     default:
@@ -1796,13 +1816,26 @@ public class ASTParser implements ASTParserConstants {
 
   static final public ASTStatement query() throws ParseException {
     jj_consume_token(HOOK);
-    jj_consume_token(STRUCT);
-    getStructure(current);
-    {if (true) return new ASTStatement();}
+    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+    case STRUCT:
+      jj_consume_token(STRUCT);
+      getStructure(current);
+      {if (true) return new ASTStatement();}
+      break;
+    case TREE:
+      jj_consume_token(TREE);
+      getTree(current);
+      {if (true) return new ASTStatement();}
+      break;
+    default:
+      jj_la1[50] = jj_gen;
+      jj_consume_token(-1);
+      throw new ParseException();
+    }
     throw new Error("Missing return statement in function");
   }
 
-  static final public ASTStatement statementC() throws ParseException {
+  static final public ASTStatement statementC(ASTNode parent) throws ParseException {
   ASTStatement result;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case BREAK:
@@ -1829,6 +1862,7 @@ public class ASTParser implements ASTParserConstants {
     case INCLUDE:
       result = simpleStatementC();
     current = result;
+    result.addParent(parent);
     {if (true) return result;}
       break;
     case DO:
@@ -1838,8 +1872,9 @@ public class ASTParser implements ASTParserConstants {
     case WHILE:
     case FUNCTION_DEC:
     case STRUCT_DEC:
-      result = blockStatementC();
+      result = blockStatementC(parent);
     current = result;
+    result.addParent(parent);
     {if (true) return result;}
       break;
     case HOOK:
@@ -1847,7 +1882,7 @@ public class ASTParser implements ASTParserConstants {
     {if (true) return new ASTStatement();}
       break;
     default:
-      jj_la1[50] = jj_gen;
+      jj_la1[51] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -1863,11 +1898,12 @@ public class ASTParser implements ASTParserConstants {
     current = result;
     label_22:
     while (true) {
-      statement = statementC();
+      statement = statementC(result);
       if (!statement.toSyntax().equals("\u005cn"))
       {
-        //current = statement;
+        //
         result.addStatement(statement);
+        current = statement;
         //current.addStatement(statement);
         System.out.println(statement.toSyntax());
       }
@@ -1905,7 +1941,7 @@ public class ASTParser implements ASTParserConstants {
         ;
         break;
       default:
-        jj_la1[51] = jj_gen;
+        jj_la1[52] = jj_gen;
         break label_22;
       }
     }
@@ -1919,6 +1955,7 @@ public class ASTParser implements ASTParserConstants {
     result = programC();
     current = result;
     System.out.println(result.toSyntax());
+    System.out.println(result.toTree(0));
     //result.toFile();
     {if (true) return result;}
     throw new Error("Missing return statement in function");
@@ -1934,7 +1971,7 @@ public class ASTParser implements ASTParserConstants {
   static public Token jj_nt;
   static private int jj_ntk;
   static private int jj_gen;
-  static final private int[] jj_la1 = new int[52];
+  static final private int[] jj_la1 = new int[53];
   static private int[] jj_la1_0;
   static private int[] jj_la1_1;
   static private int[] jj_la1_2;
@@ -1950,22 +1987,22 @@ public class ASTParser implements ASTParserConstants {
       jj_la1_init_5();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x0,0x0,0x0,0x0,0x10080000,0x0,0x4a00000,0x4000000,0x0,0x4000000,0x4000000,0x4a00000,0x10080000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x10080000,0x4000000,0x0,0x0,0xa0400000,0xa0400000,0xa0400000,0x0,0x0,0x0,0x0,0xa0400000,0xa0400000,0xa0400000,0x1000000,0xa0400000,0xa0400000,0x40000000,0x0,0x0,0x20400000,0x80000000,0xa0400000,0xa0400000,};
+      jj_la1_0 = new int[] {0x0,0x0,0x0,0x0,0x10080000,0x0,0x4a00000,0x4000000,0x0,0x4000000,0x4000000,0x4a00000,0x10080000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x10080000,0x4000000,0x0,0x0,0xa0400000,0xa0400000,0xa0400000,0x0,0x0,0x0,0x0,0xa0400000,0xa0400000,0xa0400000,0x1000000,0xa0400000,0xa0400000,0x40000000,0x0,0x0,0x20400000,0x80000000,0x0,0xa0400000,0xa0400000,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x0,0x0,0x0,0x0,0x44e00020,0x10,0x4081,0x2014081,0x0,0x2014081,0x2014081,0x4081,0x44e00020,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x44e00020,0x2014081,0x0,0x0,0x21000700,0x21000700,0x21000700,0x0,0x0,0x0,0x0,0x21000700,0x21000700,0x21000700,0x0,0x21000700,0x21000700,0x0,0x0,0x0,0x1000200,0x20000500,0x21000700,0x21000700,};
+      jj_la1_1 = new int[] {0x0,0x0,0x0,0x0,0x44e00020,0x10,0x4081,0x2014081,0x0,0x2014081,0x2014081,0x4081,0x44e00020,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x44e00020,0x2014081,0x0,0x0,0x21000700,0x21000700,0x21000700,0x0,0x0,0x0,0x0,0x21000700,0x21000700,0x21000700,0x0,0x21000700,0x21000700,0x0,0x0,0x0,0x1000200,0x20000500,0x0,0x21000700,0x21000700,};
    }
    private static void jj_la1_init_2() {
-      jj_la1_2 = new int[] {0x60000000,0x0,0x80000000,0x0,0x40,0x61108,0x0,0x0,0x0,0x0,0x0,0x0,0x40,0x80280000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x280000,0x60000000,0x80000000,0x80280000,0x80280000,0x0,0x0,0x40,0x0,0x0,0x0,0x80280080,0x80280080,0x80280080,0x0,0x80280000,0x80280000,0x80280000,0x80280080,0x80280080,0x80280080,0x0,0x80280080,0x80280080,0x0,0x0,0x80280000,0x80280000,0x80,0x80280080,0x80280080,};
+      jj_la1_2 = new int[] {0x60000000,0x0,0x80000000,0x0,0x40,0x61108,0x0,0x0,0x0,0x0,0x0,0x0,0x40,0x80280000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x280000,0x60000000,0x80000000,0x80280000,0x80280000,0x0,0x0,0x40,0x0,0x0,0x0,0x80280080,0x80280080,0x80280080,0x0,0x80280000,0x80280000,0x80280000,0x80280080,0x80280080,0x80280080,0x0,0x80280080,0x80280080,0x0,0x0,0x80280000,0x80280000,0x80,0x0,0x80280080,0x80280080,};
    }
    private static void jj_la1_init_3() {
-      jj_la1_3 = new int[] {0x1807f9f8,0x7f80000,0x8601,0x600,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x20009601,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x1807f9f8,0x9601,0x9601,0x20009601,0x7f80000,0x40000000,0x0,0x0,0x0,0x0,0x60009603,0x60009603,0x60009603,0x0,0x20009601,0x20009601,0x20009601,0x60009603,0x60009603,0x60009603,0x0,0x60009603,0x60009603,0x0,0x0,0x20009601,0x60009601,0x0,0x60009603,0x60009603,};
+      jj_la1_3 = new int[] {0x1807f9f8,0x7f80000,0x8601,0x600,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x20009601,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x1807f9f8,0x9601,0x9601,0x20009601,0x7f80000,0x40000000,0x0,0x0,0x0,0x0,0x60009603,0x60009603,0x60009603,0x0,0x20009601,0x20009601,0x20009601,0x60009603,0x60009603,0x60009603,0x0,0x60009603,0x60009603,0x0,0x0,0x20009601,0x60009601,0x0,0x0,0x60009603,0x60009603,};
    }
    private static void jj_la1_init_4() {
-      jj_la1_4 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x4000,0x0,0x4000,0x0,0x0,0x18807,0x80000,0x8001,0x8001,0x2000,0x2000,0x80000,0x0,0x18007,0x0,0x0,0x18807,0x18807,0x8,0x0,0x0,0x4000,0x2000,0x2000,0x40258807,0x40258807,0x40258807,0x100,0x18807,0x18807,0x18807,0x40258807,0x40258807,0x40258807,0x0,0x40258807,0x40258807,0x0,0x0,0x18807,0x258807,0x40000000,0x40258807,0x40258807,};
+      jj_la1_4 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x4000,0x0,0x4000,0x0,0x0,0x18807,0x80000,0x8001,0x8001,0x2000,0x2000,0x80000,0x0,0x18007,0x0,0x0,0x18807,0x18807,0x8,0x0,0x0,0x4000,0x2000,0x2000,0x40258807,0x40258807,0x40258807,0x100,0x18807,0x18807,0x18807,0x40258807,0x40258807,0x40258807,0x0,0x40258807,0x40258807,0x0,0x0,0x18807,0x258807,0x40000000,0x4000,0x40258807,0x40258807,};
    }
    private static void jj_la1_init_5() {
-      jj_la1_5 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x200,0x0,0x200,0xa00,0x800,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x800,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0xa00,0x100,0x100,0x2,0x2,0x2,0x0,0x0,0x0,0x0,0x2,0x2,0x2,0x0,0x2,0x2,0x0,0x800,0x0,0x0,0x2,0x2,0x2,};
+      jj_la1_5 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x400,0x0,0x400,0x1400,0x1000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x1000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x1400,0x100,0x100,0x2,0x2,0x2,0x0,0x0,0x0,0x0,0x2,0x2,0x2,0x0,0x2,0x2,0x0,0x1000,0x0,0x0,0x2,0x200,0x2,0x2,};
    }
 
   /** Constructor with InputStream. */
@@ -1986,7 +2023,7 @@ public class ASTParser implements ASTParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 52; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 53; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -2000,7 +2037,7 @@ public class ASTParser implements ASTParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 52; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 53; i++) jj_la1[i] = -1;
   }
 
   /** Constructor. */
@@ -2017,7 +2054,7 @@ public class ASTParser implements ASTParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 52; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 53; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -2027,7 +2064,7 @@ public class ASTParser implements ASTParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 52; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 53; i++) jj_la1[i] = -1;
   }
 
   /** Constructor with generated Token Manager. */
@@ -2043,7 +2080,7 @@ public class ASTParser implements ASTParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 52; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 53; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -2052,7 +2089,7 @@ public class ASTParser implements ASTParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 52; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 53; i++) jj_la1[i] = -1;
   }
 
   static private Token jj_consume_token(int kind) throws ParseException {
@@ -2103,12 +2140,12 @@ public class ASTParser implements ASTParserConstants {
   /** Generate ParseException. */
   static public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[174];
+    boolean[] la1tokens = new boolean[175];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 52; i++) {
+    for (int i = 0; i < 53; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {
@@ -2132,7 +2169,7 @@ public class ASTParser implements ASTParserConstants {
         }
       }
     }
-    for (int i = 0; i < 174; i++) {
+    for (int i = 0; i < 175; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;

@@ -35,7 +35,7 @@ public class ASTTestInputProcessor {
 			try {
 				int i = 0;
 				while(i<10000){
-					ASTNode temp = parser.statementC();
+					ASTNode temp = parser.statementC(new ASTNode());
 					result.add(temp.toSyntax()+"\n");
 					i++;
 				}

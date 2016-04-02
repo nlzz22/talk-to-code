@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import ast.ASTNode;
 import ast.ASTParser;
 import junit.framework.TestCase;
 
@@ -34,7 +35,7 @@ public class PostfixTest extends TestCase {
 			int testNo = 0;
 			while(testNo!=count){
 				try {
-					assertEquals(testNo+" "+expectedOutput.get(testNo),testNo+" "+parser.statementC().toSyntax());
+					assertEquals(testNo+" "+expectedOutput.get(testNo),testNo+" "+parser.statementC(new ASTNode()).toSyntax());
 					testNo++;
 				} catch (Exception ex){
 					ex.printStackTrace();

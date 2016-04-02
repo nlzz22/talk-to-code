@@ -58,6 +58,13 @@ public class ASTNode{
 	public String typeof(){
 		return type;
 	}
-	
+	public String toTree(int indent){
+		StringBuilder sb = new StringBuilder("");
+		for(int i = 0;i<indent;i++){
+			sb.append("\t");
+		}
+		sb.append(this.typeof());
+		return sb.toString();
+	}
 	
 }

@@ -11,7 +11,6 @@ public class ASTForStatementJ extends ASTForStatement {
 	private ASTExpression initialCondition;
 	private ASTExpression finalCondition;
 	private ASTExpression incrementCondition;
-	private ArrayList<ASTStatement> statements;
 	public ASTForStatementJ() {
 		super();
 		this.initialCondition = null;

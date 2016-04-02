@@ -5,8 +5,13 @@ Write a program:
 statementC():
 	simpleStatementC()
 	| blockStatementC()
+	| query()
 
 
+query():
+	"?"(#struct    				//display the partial struct of the current node in the tree (like where this node	belongs to
+	|#tree  					//display the current AST, how the current tree looks like (this can be used to tested whether a block statement is finished, if a statement is unfinshed, this block will not be shown in the tree)
+	)
 
 blockStatementC():
 	structDeclareStatement()

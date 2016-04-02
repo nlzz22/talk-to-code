@@ -8,8 +8,6 @@ import java.util.ArrayList;
  *
  */
 public class ASTForStatementP extends ASTForStatement {
-	
-	private ArrayList<ASTStatement> statements;
 	private ArrayList<ASTStatement> elseBranch;
 	private ASTExpressionUnitIdentifier variable;
 	private ASTExpressionUnit range;
