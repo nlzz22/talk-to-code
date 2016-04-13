@@ -47,7 +47,10 @@ breakStatementC() :
 	< BREAK > (< IDENTIFIER >)? < TERMINATOR >
 
 create_variableC() :
-	< CREATE >(catchModifier())*types_C()(fragmentC()(expressionC())?)+< TERMINATOR >
+	< CREATE >(catchModifier())*types_C()
+	((<VARIABLE><IDENTIFIER>(expressionC())?<DECLARE_END>)
+	|(<ARRAY><VARIABLE><IDENTIFIER>(<INDEX>expressionC()<INDEX_END>)+<DECLARED_END>)+
+	< TERMINATOR >
 
 switchStatement() :
 	 < SWITCH > < CONDITION > expressionC() (< CASE > expressionC() < CASE_START > (statementC())*< CASE_END >)* (< _DEFAULT >< CASE_START >< CASE_END >)?< TERMINATOR >
@@ -220,6 +223,10 @@ infixOperators() :
 < STRUCT_END : "#struct_end" >
 < PROGRAM_END : "#program_end" >
 < PROGRAM_C : "#c_program" >
+< DECLARE_END : "#dec_end" >
+< DIMENSION : "#dimension" >
+< PARAMETER_A : "#parameter_a" >
+< TREE : "#tree" >
 < ASSIGN : "=" >
 < LT : "<" >
 < GT : ">" >
