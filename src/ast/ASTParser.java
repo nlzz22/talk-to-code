@@ -66,7 +66,7 @@ public class ASTParser implements ASTParserConstants {
       {
         indent += "\u005ct";
       }
-      System.out.println(indent + stack.pop().typeof());
+      //System.out.println(indent + stack.pop().typeof());
       counter++;
     }
   }
@@ -964,7 +964,7 @@ public class ASTParser implements ASTParserConstants {
     while (true) {
       attribute = create_variableC();
       result.addAttribute(attribute);
-      System.out.println(attribute.toSyntax());
+      //System.out.println(attribute.toSyntax());
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case CREATE:
         ;
@@ -1109,7 +1109,7 @@ public class ASTParser implements ASTParserConstants {
       }
       s = statementC(result);
       result.addStatement(s);
-      System.out.println(s.toSyntax());
+      //System.out.println(s.toSyntax());
     }
     jj_consume_token(FUNCTION_END);
     jj_consume_token(TERMINATOR);
@@ -1126,7 +1126,7 @@ public class ASTParser implements ASTParserConstants {
     condition = expressionC();
     ASTIfStatementC result = new ASTIfStatementC(condition);
     result.addParent(parent);
-    System.out.println(condition.toSyntax());
+    //System.out.println(condition.toSyntax());
     jj_consume_token(IF_BRANCH_START);
     label_14:
     while (true) {
@@ -1169,7 +1169,7 @@ public class ASTParser implements ASTParserConstants {
       }
       stat1 = statementC(result);
       result.setIf(stat1);
-      System.out.println(stat1.toSyntax());
+      //System.out.println(stat1.toSyntax());
     }
     jj_consume_token(IF_BRANCH_END);
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -1216,7 +1216,7 @@ public class ASTParser implements ASTParserConstants {
         }
         stat2 = statementC(result);
         result.setElse(stat2);
-        System.out.println(stat2.toSyntax());
+        //System.out.println(stat2.toSyntax());
       }
       jj_consume_token(ELSE_BRANCH_END);
       break;
@@ -1256,7 +1256,7 @@ public class ASTParser implements ASTParserConstants {
     case ACCESS:
       init = expressionC();
       result.addInitial(init);
-      System.out.println(init.toSyntax());
+      //System.out.println(init.toSyntax());
       break;
     default:
       jj_la1[36] = jj_gen;
@@ -1281,7 +1281,7 @@ public class ASTParser implements ASTParserConstants {
     case ACCESS:
       end = expressionC();
       result.addFinal(end);
-      System.out.println(end.toSyntax());
+      //System.out.println(end.toSyntax());
       break;
     default:
       jj_la1[37] = jj_gen;
@@ -1306,7 +1306,7 @@ public class ASTParser implements ASTParserConstants {
     case ACCESS:
       increment = expressionC();
       result.addIncrement(increment);
-      System.out.println(increment.toSyntax());
+      //System.out.println(increment.toSyntax());
       break;
     default:
       jj_la1[38] = jj_gen;
@@ -1354,7 +1354,7 @@ public class ASTParser implements ASTParserConstants {
       }
       temp = statementC(result);
       result.addStatement(temp);
-      System.out.println(temp.toSyntax());
+      //System.out.println(temp.toSyntax());
     }
     jj_consume_token(FOR_END);
     jj_consume_token(TERMINATOR);
@@ -1370,7 +1370,7 @@ public class ASTParser implements ASTParserConstants {
     exp = expressionC();
     ASTWhileStatementC result = new ASTWhileStatementC(exp);
     result.addParent(parent);
-    System.out.println(exp.toSyntax());
+    //System.out.println(exp.toSyntax());
     jj_consume_token(WHILE_START);
     label_17:
     while (true) {
@@ -1413,7 +1413,7 @@ public class ASTParser implements ASTParserConstants {
       }
       temp = statementC(result);
       result.addStatement(temp);
-      System.out.println(temp.toSyntax());
+      //System.out.println(temp.toSyntax());
     }
     jj_consume_token(WHILE_END);
     jj_consume_token(TERMINATOR);
@@ -1429,7 +1429,7 @@ public class ASTParser implements ASTParserConstants {
     exp = expressionC();
     ASTDoWhileStatement result = new ASTDoWhileStatement(exp);
     result.addParent(parent);
-    System.out.println(exp.toSyntax());
+    //System.out.println(exp.toSyntax());
     jj_consume_token(WHILE_START);
     label_18:
     while (true) {
@@ -1472,7 +1472,7 @@ public class ASTParser implements ASTParserConstants {
       }
       temp = statementC(result);
       result.addStatement(temp);
-      System.out.println(temp.toSyntax());
+      //System.out.println(temp.toSyntax());
     }
     jj_consume_token(WHILE_END);
     jj_consume_token(TERMINATOR);
@@ -1489,7 +1489,7 @@ public class ASTParser implements ASTParserConstants {
     condition = expressionC();
     ASTSwitchStatement result = new ASTSwitchStatement(condition);
     result.addParent(parent);
-    System.out.println(condition.toSyntax());
+    //System.out.println(condition.toSyntax());
     label_19:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -1503,7 +1503,7 @@ public class ASTParser implements ASTParserConstants {
       jj_consume_token(CASE);
       case_condition = expressionC();
       result.addCase(case_condition);
-      System.out.println(case_condition.toSyntax());
+      //System.out.println(case_condition.toSyntax());
       jj_consume_token(CASE_START);
       label_20:
       while (true) {
@@ -1546,7 +1546,7 @@ public class ASTParser implements ASTParserConstants {
         }
         temp = statementC(result);
         result.addStatement(temp);
-        System.out.println(temp.toSyntax());
+        //System.out.println(temp.toSyntax());
       }
       jj_consume_token(CASE_END);
     }
@@ -1596,7 +1596,7 @@ public class ASTParser implements ASTParserConstants {
         }
         temp = statementC(result);
         result.addStatement(temp);
-        System.out.println(temp.toSyntax());
+        //System.out.println(temp.toSyntax());
       }
       jj_consume_token(CASE_END);
       break;
@@ -1905,6 +1905,7 @@ public class ASTParser implements ASTParserConstants {
         result.addStatement(statement);
         current = statement;
         //current.addStatement(statement);
+		// important : Outputs to final program 
         System.out.println(statement.toSyntax());
       }
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
