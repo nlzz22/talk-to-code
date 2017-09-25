@@ -21,14 +21,14 @@ public class ASTParser implements ASTParserConstants {
   public static void main(String args []) throws ParseException
   {
     ASTParser parser = new ASTParser(System.in);
-    while (true)
-    {
-      System.out.println("Reading from standard input...");
-      System.out.print("Enter an program:\u005cn");
+    //while (true)
+    //{
+      //.out.println("Reading from standard input...");
+      //System.out.print("Enter an program:\u005cn");
       try
       {
         program();
-        System.out.println("AST construction complete.");
+        //System.out.println("AST construction complete.");
       }
       catch (Exception e)
       {
@@ -40,9 +40,9 @@ public class ASTParser implements ASTParserConstants {
       {
         System.out.println("Unknown Error Occurs.");
         System.out.println(e.getMessage());
-        break;
+        //break;
       }
-    }
+    //}
   }
 
   private static void getStructure(ASTNode current)
@@ -1954,8 +1954,8 @@ public class ASTParser implements ASTParserConstants {
   ASTCompilationUnitC result;
     result = programC();
     current = result;
-    System.out.println(result.toSyntax());
-    System.out.println(result.toTree(0));
+    //System.out.println(result.toSyntax());
+    //System.out.println(result.toTree(0));
     //result.toFile();
     {if (true) return result;}
     throw new Error("Missing return statement in function");
